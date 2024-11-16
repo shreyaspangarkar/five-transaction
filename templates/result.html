@@ -1,1 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Query Results</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #343a40;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        th, td {
+            border: 1px solid #dee2e6;
+            padding: 12px;
+            text-align: left;
+            font-size: 0.95em;
+        }
+        th {
+            background-color: #007bff;
+            color: #fff;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        p {
+            text-align: center;
+            font-size: 1.1em;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Query Results</h1>
+
+    {% if results1 %}
+        <h2>Results for Query 1</h2>
+        <table>
+            <tr>
+                <th>TRAN_DATE</th>
+                <th>TRAN_ID</th>
+                <th>Account Name</th>
+                <th>Total Debit</th>
+                <th>Total Credit</th>
+            </tr>
+            {% for row in results1 %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[3] }}</td>
+                <td>{{ row[4] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% elif results2 %}
+        <h2>Results for Query 2</h2>
+        <table>
+            <tr>
+                <th>TRAN_DATE</th>
+                <th>TRAN_ID</th>
+                <th>Member Name</th>
+                <th>Account Name</th>
+                <th>Debit Amount</th>
+                <th>Credit Amount</th>
+            </tr>
+            {% for row in results2 %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[3] }}</td>
+                <td>{{ row[4] }}</td>
+                <td>{{ row[5] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% elif results3 %}
+        <h2>Results for Query 3</h2>
+        <table>
+            <tr>
+                <th>TRAN_DATE</th>
+                <th>TRAN_ID</th>
+                <th>TRAN_SR_ID</th>
+                <th>Account Name</th>
+                <th>Debit Amount</th>
+                <th>Credit Amount</th>
+            </tr>
+            {% for row in results3 %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[3] }}</td>
+                <td>{{ row[4] }}</td>
+                <td>{{ row[5] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% elif results4 %}
+        <h2>Results for Query 4</h2>
+        <table>
+            <tr>
+                <th>TRAN_DATE</th>
+                <th>TRAN_ID</th>
+                <th>TRAN_SR_ID</th>
+                <th>Account Name</th>
+                <th>Total Debit</th>
+                <th>Total Credit</th>
+            </tr>
+            {% for row in results4 %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[3] }}</td>
+                <td>{{ row[4] }}</td>
+                <td>{{ row[5] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% elif results5 %}
+        <h2>Results for Query 5</h2>
+        <table>
+            <tr>
+                <th>Member ID</th>
+                <th>Member Name</th>
+                <th>Guardian Relation</th>
+                <th>Guardian Name</th>
+                <th>Loan ID</th>
+                <th>Loan Amount</th>
+                <th>Approved Loan Amount</th>
+                <th>Adjusted Loan Amount</th>
+                <th>Loan Date</th>
+                <th>Surity1 ID</th>
+                <th>Surity1 Name</th>
+                <th>Surity2 ID</th>
+                <th>Surity2 Name</th>
+                <th>Surity3 ID</th>
+                <th>Surity3 Name</th>
+                <th>Surity4 ID</th>
+                <th>Surity4 Name</th>
+            </tr>
+            {% for row in results5 %}
+            <tr>
+                <td>{{ row.member_id }}</td>
+                <td>{{ row.member_name }}</td>
+                <td>{{ row.gaurdian_relation }}</td>
+                <td>{{ row.gaurdian_name }}</td>
+                <td>{{ row.loan_id }}</td>
+                <td>{{ row.loan_amount }}</td>
+                <td>{{ row.app_loan_amt }}</td>
+                <td>{{ row.adj_loan_amt }}</td>
+                <td>{{ row.loan_date }}</td>
+                <td>{{ row.surity1_id }}</td>
+                <td>{{ row.surity1_name }}</td>
+                <td>{{ row.surity2_id }}</td>
+                <td>{{ row.surity2_name }}</td>
+                <td>{{ row.surity3_id }}</td>
+                <td>{{ row.surity3_name }}</td>
+                <td>{{ row.surity4_id }}</td>
+                <td>{{ row.surity4_name }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No results found for the given input.</p>
+    {% endif %}
+
+</body>
+</html>
 
