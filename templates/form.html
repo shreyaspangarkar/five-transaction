@@ -1,1 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Query Reports</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body, html {
+            height: 100%;
+            font-family: Arial, sans-serif; 
+        }
+        body {
+            display: flex;
+            background-color: #f0f0f0;
+        }
+        .sidebar {
+            width: 20%;
+            background-color: #333;
+            color: #fff;
+            padding-top: 20px;
+        }
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #007bff;
+        }
+        .sidebar div {
+            padding: 15px;
+            margin: 10px;
+            background-color: #444;
+            cursor: pointer;
+            text-align: center;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .sidebar div:hover {
+            background-color: #555;
+        }
+        .content {
+            flex: 1;
+            padding: 20px;
+            background-color: #fff;
+        }
+        h3 {
+            margin-bottom: 15px;
+            color: #007bff;
+        }
+        .hidden {
+            display: none;
+        }
+        .form-section {
+            margin-bottom: 20px;
+        }
+        .form-section label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-section input,
+        .form-section select {
+            width: 50%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .form-section input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        .form-section input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>REPORTS</h2>
+    <div onclick="showForm('form1')">Transactions for a Member</div>
+    <div onclick="showForm('form2')">Member Transactions</div>
+    <div onclick="showForm('form3')">General Entries</div>
+    <div onclick="showForm('form4')">Ledger</div>
+    <div onclick="showForm('form5')">Member Loan Surity</div>
+</div>
+
+<div class="content">
+    <!-- Member Transactions Form -->
+    <div id="form1" class="hidden">
+        <h3>Transactions for a Member</h3>
+        <form action="/submit1" method="POST">
+            <div class="form-section">
+                <label for="id">Enter ID:</label>
+                <input type="text" id="id" name="id" required>
+            </div>
+            <div class="form-section">
+                <label for="date_from">Date From:</label>
+                <input type="date" id="date_from" name="date_from" required>
+            </div>
+            <div class="form-section">
+                <label for="date_to">Date To:</label>
+                <input type="date" id="date_to" name="date_to" required>
+            </div>
+            <div class="form-section">
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+
+    <!-- Member Transactions with Member Name -->
+    <div id="form2" class="hidden">
+        <h3>Member Transactions with Member Name</h3>
+        <form action="/submit2" method="POST">
+            <div class="form-section">
+                <label for="date_from2">Date From:</label>
+                <input type="date" id="date_from2" name="date_from" required>
+            </div>
+            <div class="form-section">
+                <label for="date_to2">Date To:</label>
+                <input type="date" id="date_to2" name="date_to" required>
+            </div>
+            <div class="form-section">
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+
+    <!-- General Entries Form -->
+    <div id="form3" class="hidden">
+        <h3>Enter detials for General Entries</h3>
+        <form action="/submit3" method="POST">
+            <div class="form-section">
+                <label for="date_from3">Date From:</label>
+                <input type="date" id="date_from3" name="date_from" required>
+            </div>
+            <div class="form-section">
+                <label for="date_to3">Date To:</label>
+                <input type="date" id="date_to3" name="date_to" required>
+            </div>
+            <div class="form-section">
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+
+    <!-- Ledger Form -->
+    <div id="form4" class="hidden">
+        <h3>Enter detials for Ledger</h3>
+        <form action="/submit4" method="POST">
+            <div class="form-section">
+                <label for="account_id">Enter Account ID:</label>
+                <input type="text" id="account_id" name="account_id" required>
+            </div>
+            <div class="form-section">
+                <label for="date_from4">Date From:</label>
+                <input type="date" id="date_from4" name="date_from" required>
+            </div>
+            <div class="form-section">
+                <label for="date_to4">Date To:</label>
+                <input type="date" id="date_to4" name="date_to" required>
+            </div>
+            <div class="form-section">
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+
+    <!-- Member Loan Surity Form -->
+    <div id="form5" class="hidden">
+        <h3>Enter detials for Member Loan Surity</h3>
+        <form action="/submit5" method="POST">
+            <div class="form-section">
+                <label for="loan_type">Loan Type:</label>
+                <select id="loan_type" name="loan_type" required>
+                    <option value="ORD">ORD</option>
+                    <option value="EMG">EMG</option>
+                </select>
+            </div>
+            <div class="form-section">
+                <label for="meeting_date_from">Meeting Date From:</label>
+                <input type="date" id="meeting_date_from" name="meeting_date_from" required>
+            </div>
+            <div class="form-section">
+                <label for="meeting_date_to">Meeting Date To:</label>
+                <input type="date" id="meeting_date_to" name="meeting_date_to" required>
+            </div>
+            <div class="form-section">
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function showForm(formId) {
+        const forms = ['form1', 'form2', 'form3', 'form4', 'form5'];
+        forms.forEach(id => document.getElementById(id).classList.add('hidden'));
+        document.getElementById(formId).classList.remove('hidden');
+    }
+</script>
+
+</body>
+</html>
 
